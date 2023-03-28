@@ -23,6 +23,20 @@ let createNewUser = async (data) => {
         }
     });
 }
+
+let getAllUser = () => {
+    return new Promise(async (resolve, reject) => {
+        try {
+            let users = db.User.findAll({
+                raw: true,
+            });
+            resolve(users);
+        } catch (error) {
+            reject(error);
+        }
+    });
+}
+// ham bam mat khau
 let hashUserPassword = (password) => {
     const salt = bcrypt.genSaltSync(10);
     return new Promise(async (resolve, reject) => {
@@ -37,4 +51,5 @@ let hashUserPassword = (password) => {
 
 module.exports = {
     createNewUser: createNewUser,
+    getAllUser: getAllUser,
 }
